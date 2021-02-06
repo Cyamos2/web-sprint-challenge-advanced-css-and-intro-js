@@ -249,10 +249,18 @@ Use get20s to do the following:
 Example born in 1901 and died in 1959 - included -- born in 1889 and died in 1925 not included
 If correct, the function should return ["Salvador Dali", "Frida Kahlo"]*/
 
-function get20s(array, indexnum){
-  return `the artist at index ${artists[indexnum].id} is ${artists[indexnum].name}`;
+function get20s(arr){
+  let newArr =[];
+  for (let i = 0; i < arr.length; i++){
+    let yearBorn = parseInt((arr[i].years).substring(0,4));
+    let yearDead = parseInt((arr[i].years).substring(7,11));
+    if ((yearBorn > 1900) && (2000 > yearDead)){
+      newArr.push(arr[i].name);
+    }
+  }
+  return newArr;
 }
-
+console.log(get20s(artists));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -264,16 +272,11 @@ function get20s(array, indexnum){
  
  For example, if removeArtist is invoked with the artists array and the number 0, it will remove Amedeo Modigliani from our dataset and return the number 19. */
 
-function removeArtist(artists){
-   let a = [];
-   for(let i = 0; i < artists.length; i++) {
-     let years = artists[i].years.split(" - ");
-     if(parseInt(years[0]) >= 1900 && parseInt(years[1]) <= 2000){
-       a.push(artists[1].name);
-     }
-   }
-   return a;
+function removeArtist(arr, id){
+  arr.shift([id]);
+  return arr.length;
 }
+console.log(removeArtist(artists,0));
    
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
